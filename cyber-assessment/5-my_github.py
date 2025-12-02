@@ -2,10 +2,9 @@
 import sys
 import requests
 
-url = "https://api.github.com/user"
-response = requests.get(url, auth=(sys.argv[1], sys.argv[2]))
+response = requests.get("https://api.github.com/user", auth=(sys.argv[1], sys.argv[2]))
 
-try:
+if response.status_code == 200:
     print(response.json().get("id"))
-except ValueError:
+else:
     print("None")
